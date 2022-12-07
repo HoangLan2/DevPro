@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'UTMAptima';
+    src: url('../Font/UTM\ Aptima.ttf');
+}
+
+*{
+    font-family: 'UTMAptima';
+    font-size: 14px;
+}
+
+body{
+    margin: 0;
+}
+.wrapper{
+    max-width: 600px;
+    box-sizing: border-box;
+    margin: 100px auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    padding: 30px;
+    
+}
+
+.wrapper h2{
+    text-align: center;
+    margin-top: 0;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: dodgerblue;
+    text-transform: uppercase;
+}
+
+
+.wrapper h3{
+    text-align: center;
+    margin-top: 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: dodgerblue;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+.form-group label{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.form-group .form-control{
+    width:100% ;
+    height: 33px;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.form-group .form-control:focus{
+    outline: unset;
+}
+.button-form{
+    margin-top: 30px;
+    text-align: center;
+}
+.btn-register{
+    padding: 10px 30px;
+    font-size: 18px;
+    border: 0;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 5px;
+    width: 50%;
+}
+.request{
+text-align: center;
+margin-top: 7px;
+font-size: 12px;
+}
+
+.request a{
+    color: dodgerblue;
+    }

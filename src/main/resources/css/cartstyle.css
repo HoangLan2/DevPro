@@ -1,0 +1,289 @@
+@font-face {
+    font-family: 'UTMAptima';
+    src: url('../Font/UTM\ Aptima.ttf');
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.content_header {
+    display: flex;
+    justify-content: space-between;
+    width: 1265px;
+}
+
+.logo {
+    margin-top: 32px;
+    margin-bottom: 38px;
+    margin-right: 88px;
+}
+
+.logo img {
+    max-width: 153px;
+}
+
+.menu_header {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu_header {
+    display: flex;
+}
+
+.menu_header>li {
+    margin-right: 52px;
+}
+
+.menu_header>li>a {
+    display: block;
+    text-transform: uppercase;
+    color: #333333;
+    text-decoration: none;
+    font-family: 'UTMAptima';
+    font-size: 14px;
+    line-height: 30.84px;
+}
+
+.menu_header>li>a.active {
+    box-shadow: 0 2px #666666;
+}
+
+
+.btn-header {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'UTMAptima';
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 30.84px;
+}
+
+.buttom {
+    margin-top: 55px;
+}
+
+.btn-header img {
+    margin-right: 17px;
+}
+
+.icon_cart {
+    text-decoration: none;
+    position: relative;
+    margin-left: 20px;
+    padding-right: 55px;
+}
+
+.icon_cart img {
+    vertical-align: middle;
+}
+
+
+.icon_cart .quantity {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #cc9933;
+    color: white;
+    text-align: center;
+    font-family: 'UTMAptima';
+    line-height: 16px;
+    font-size: 12px;
+    top: -10px;
+    left: 13px;
+
+}
+
+ol {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.breadcrumb {
+    padding: 10px 15px;
+    font-family: 'UTMAptima';
+    color: #a6a6a6;
+    font-size: 14px;
+    background-color: #f2f2f2;
+    padding-top: 31px;
+    padding-bottom: 31px;
+}
+
+.breadcrumb ol {
+    display: flex;
+    justify-content: center;
+}
+
+.breadcrumb ol li {
+    margin-right: 30px;
+    position: relative;
+}
+
+
+.breadcrumb ol li:last-child::after {
+    content: ">";
+    display: block;
+    position: absolute;
+    right: 69px;
+    top: 0;
+}
+
+.breadcrumb ol li:last-child::before {
+    display: none;
+}
+
+.breadcrumb ol li a {
+    text-decoration: none;
+    color: #666666;
+}
+.main{
+    display: flex;
+    margin-top: 74px;
+    padding-top: 51px;
+    background-color: #f2f2f2;
+    font-family: 'UTMAptima';
+    font-size: 14px;
+    color: #333333;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+}
+.content {
+    display: flex;
+    background-color: #f2f2f2;
+    font-family: 'UTMAptima';
+    font-size: 14px;
+    color: #333333;
+    padding-bottom: 20px;
+}
+
+.name_pro {
+    padding-left: 170px;
+    padding-right: 140px;
+}
+
+.price_pro {
+    padding-right: 94px;
+}
+
+.amount_pro {
+    padding-right: 94px;
+}
+
+.totle_pro {
+    padding-right: 70px;
+}
+
+.content_2 {
+    display: flex;
+    margin-top: 0px;
+    padding-top: 24px;
+    background-color: #f2f2f2;
+    font-family: 'UTMAptima';
+    font-size: 14px;
+    color: #333333;
+    padding-bottom: 25px;
+}
+
+.content_2 img{
+    padding-left: 40px;
+}
+.name_pro_detail {
+    padding-left: 60px;
+    padding-right: 132px;
+    padding-top: 20px;
+}
+
+.price_pro_detail {
+    padding-right: 68px;
+    padding-top: 20px;
+}
+
+.amount_pro_detail {
+   width: 50px;
+   height: 26px;
+    border: 1px solid #cccccc;
+    display: flex;
+    margin-right: 95px;
+    margin-top: 15px;
+}
+
+#form-search button {
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    border: 0;
+    color: white;
+    background-color: #999999;
+    padding: 1px;
+    font-size: 10px;
+    padding-right: 2px;
+    margin-right: 6px;
+    margin-left: 2px;
+}
+.totle_pro_detail {
+    padding-right: 70px;
+    padding-top: 20px;
+    color: #cc9933;
+    font-weight: bold;
+}
+.totle_pro_detail hr{
+    width: 700px;
+    color:#cccccc;
+    margin-top: -3px;
+    margin-bottom: 0px;
+    margin-left: 40px;
+}
+
+.summary{
+    display: block;
+    font-family: 'UTMAptima';
+    background-color: white;
+    width: 299px;
+    height: 264px;
+    margin-left: 35px;
+    padding: 30px ;
+}
+.summary hr{
+    width: 297px;
+    margin-top: 27px;
+    margin-bottom: 27px;
+    margin-left: 0px;
+}
+.provisional{
+    display: flex;
+    font-size: 14px;
+}
+
+.btn-submit{
+    width: 300px;
+    height: 30px;
+    background-color: #cc9933;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    text-align: center;
+    font-family: 'UTMAptima';
+    margin: 35px 0px;
+    padding-top: 8px;
+    padding-bottom: 31px;
+    border-radius: 1px;
+}

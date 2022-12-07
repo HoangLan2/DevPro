@@ -1,0 +1,134 @@
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+    background-color: #f2f2f2;
+    margin-top: 70px;
+    justify-content: center;
+}
+
+
+.menu>li {
+    box-shadow: 0 1px #666666;
+    margin-bottom: 20px;
+}
+
+.menu>li>a {
+    display: block;
+    color: #666666;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'UTMAptima';
+    font-size: 14px;
+    padding: 40px 100px;
+
+}
+
+
+.menu>li>a.hover {
+    background-color: #999999;
+    color: white;
+}
+
+.detailPro{
+    margin-top: 70px;
+}
+.media-body{
+    font-family: "UTMAptima";
+}
+
+.media-body p{
+    font-size: 16px;
+}
+.buttons_added{
+    display: flex;
+}
+
+.input-qty {
+    background-color:#f2f2f2;
+    height:30px;
+    text-align:center;
+    font-size:18px;
+    display:inline-block;
+    vertical-align:top;
+    
+    border: 2px solid #666666;
+    border-radius: 20px;
+}
+
+.total{
+    margin-left: 314px;
+    font-size: 15px;
+   
+}
+.addCart{
+    background-color: #f2f2f2;
+    width: 340px;
+    height: 50px;
+    border-radius: 20px;
+    justify-content: center;
+    border: 2px solid  #666666;
+    margin-top: 25px;
+    margin-left: 60px;
+    font-size: 20px;
+    font-family: "UTMAptima";
+    padding-bottom: 6px;
+}
+    
+
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.pagination ul {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination ul li {
+    position: relative;
+}
+
+.pagination ul li:last-child::after {
+    content: ">";
+    display: block;
+    position: absolute;
+    right: -1px;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    font-size: 14px;
+}
+
+.pagination ul li a {
+    display: block;
+    width: 28px;
+    height: 24px;
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    font-family: 'UTMAptima';
+}
+
+.pagination ul li:last-child a {
+    width: 45px;
+}
+
+.pagination>ul>li>a.active {
+    background-color: #999999;
+    color: white;
+    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-left: 2px;
+    padding-right: 1px;
+}
