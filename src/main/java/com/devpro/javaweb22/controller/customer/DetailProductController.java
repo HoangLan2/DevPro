@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.devpro.javaweb22.model.Products;
-import com.devpro.javaweb22.services.ProductsService;
+import com.devpro.javaweb22.services.ProductService;
 
 @Controller
 public class DetailProductController {
 
 	@Autowired
-	ProductsService productsService;
+	ProductService productsService;
 
 	// đăng ký 1 request cho controller này
 	@RequestMapping(value = { "/detailProduct" }, method = RequestMethod.GET)

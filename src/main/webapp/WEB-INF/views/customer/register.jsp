@@ -26,37 +26,29 @@
 			<h2>Đăng ký</h2>
 			<h3>Chào mừng bạn đến với Swan Florist!</h3>
 
-			<div class="form-group">
-				<label>Họ</label>
-				<sf:input path="firstName" name="firstname" id="input_firstname"
-					class="form-control"></sf:input>
-			</div>
+			<div>${message }</div>
+			<div>${notifi }</div>
 			<div class="form-group">
 				<label>Tên</label>
-				<sf:input path="lastName" name="lastname" id="input_lastname"
+				<sf:input path="userName" name="userName" id="input_userName"
 					class="form-control"></sf:input>
+				<sf:errors path="userName" style="color: red"></sf:errors>
 			</div>
-			<div class="form-group ">
-				<label>Biệt danh</label>
-				<sf:input path="nickName" name="nickname" id="input_nickname"
-					class="form-control"></sf:input>
-			</div>
+
 			<div class="form-group">
 				<label>Email</label>
 				<sf:input path="email" name="email" id="input_email"
 					class="form-control"></sf:input>
+				<sf:errors path="email" style="color: red"></sf:errors>
 			</div>
 			<div class="form-group">
 				<label>Mật khẩu</label>
-				<sf:password path="password" showPassword="false" name="password"
+				<sf:password path="passWord" showPassword="false" name="password"
 					id="input_password" class="form-control"></sf:password>
+				<sf:errors path="passWord" style="color: red"></sf:errors>
 			</div>
-			<div class="form-group">
-				<label>Ngày Sinh</label>
-				<sf:input path="dateOfBirth" name="date" id="input_date"
-					class="form-control"></sf:input>
-			</div>
-			<div class="form-group">
+
+			<%-- <div class="form-group">
 				<label>Giới tính</label>
 				<div style="font-size: 16px; font-weight: bold">
 					Nam
@@ -66,16 +58,18 @@
 					Khác
 					<sf:radiobutton path="gender" value="Other" />
 				</div>
-			</div>
+			</div> --%>
 			<div class="form-group formdiv">
 				<label>Số điện thoại</label>
-				<sf:input path="mobile" name="phone" id="input_phone"
-					class="form-control"></sf:input>
+				<sf:input path="phone" name="phone" id="input_phone"
+					class="form-control" maxlength="10"></sf:input>
+				<sf:errors path="phone" style="color: red"></sf:errors>
 			</div>
 			<div class="form-group formdiv">
 				<label>Địa chỉ</label>
-				<sf:textarea path="address" name="address" id="input_address"
-					class="form-control"></sf:textarea>
+				<sf:textarea path="shippingAddress" name="shippingAddress"
+					id="input_address" class="form-control"></sf:textarea>
+				<sf:errors path="shippingAddress" style="color: red"></sf:errors>
 			</div>
 			<div class="button-form">
 				<button type="submit" class="btn btn-register">Đăng ký</button>
@@ -84,10 +78,11 @@
 				<button type="button" class="btn btn-register">reset</button>
 			</div>
 
-			<div>${message }</div>
+
 
 			<div class="form-group request">
-				Bạn đã có tài khoản <a href="../layouts/login.html">Đăng nhập</a>
+				Bạn đã có tài khoản <a href="${base }/login">Đăng nhập/</a><a
+					href="${base}/home">Quay lại</a>
 			</div>
 
 		</sf:form>

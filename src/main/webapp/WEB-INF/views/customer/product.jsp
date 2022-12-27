@@ -16,65 +16,84 @@
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/customer/layout/header2.jsp"></jsp:include>
-	<main>
-		<div class="breadcrumb">
-			<ol>
-				<li style="margin-right: 10px;"><img src="${base}/img/nha.png"></li>
-				<li><a href="home.html">Trang chủ</a></li>
-				<li>Sản phẩm</li>
-			</ol>
-		</div>
+	<form action="${base }/product" method="get">
+		<input id="page" name="page" class="form-control"
+			style="display: none" value="${ps.currentPage }">
 
-		<div class="container">
-			<div>
-				<ul class="menu">
-					<li><a href="" class="active">Hoa để bàn</a></li>
-					<li><a href="">Bó hoa</a></li>
-					<li><a href="">Kệ hoa </a></li>
-					<li><a href="">Lan hồ điệp</a></li>
-				</ul>
+		<jsp:include page="/WEB-INF/views/customer/layout/header2.jsp"></jsp:include>
+		<main>
+			<div class="breadcrumb">
+				<ol>
+					<li style="margin-right: 10px;"><img src="${base}/img/nha.png"></li>
+					<li><a href="${base }/home">Trang chủ</a></li>
+					<li>Sản phẩm</li>
+				</ol>
 			</div>
+			<div class="container">
+				<div>
+					<ul class="menu">
+						<c:forEach var="cate" items="${categories }">
+							<li value="${cate.id }"><a
+								href="${base }/product/${cate.id}">${cate.name } </a></li>
+						</c:forEach>
 
-			<div class="row">
-				<!-- start -->
-				<c:forEach var="pro" items="${products }">
+					</ul>
+				</div>
+
+				<div class="row">
 					<!-- start -->
+					<c:forEach var="pro" items="${products.data }">
+						<!-- start -->
 
-					<div class="item">
-						<div class="info">
-							<a href="${base }/detailProduct/${pro.id }"> <img
-								src="${base }/upload/${pro.avatar }" width="285" height="289">
-							</a>
-							<div class="desc_product">
-								<h2 class="product_name">
-									<a href="">${pro.title }</a>
-								</h2>
-								<div class="price">${pro.priceSale }đ</div>
+						<div class="item">
+							<div class="info">
+								<a href="${base }/detailProduct/${pro.id }"> <img
+									src="${base }/upload/${pro.avatar }" width="285" height="289">
+								</a>
+								<div class="desc_product">
+									<h2 class="product_name">
+										<a href="">${pro.title }</a>
+									</h2>
+									<div class="price">${pro.priceSale }VNĐ</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
-				<!-- end -->
+					</c:forEach>
+					<!-- end -->
 
+				</div>
 			</div>
+			<div class="row" style="width: 100%">
+				<div class="col-12 d-flex justify-content-center" >
+					<div id="paging">1</div>
+				</div>
+			</div>
+		</main>
 
-			<ul class="pagination">
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						<span class="sr-only">Previous</span>
-				</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#"
-					aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-						class="sr-only">Next</span>
-				</a></li>
-			</ul>
-		</div>
-	</main>
+		<!-- phân trang -->
+
+	</form>
 	<jsp:include page="/WEB-INF/views/customer/layout/footer.jsp"></jsp:include>
+
+	<!-- JS -->
+	<jsp:include page="/WEB-INF/views/customer/layout/js.jsp"></jsp:include>
+
+	<script type="text/javascript">
+			$( document ).ready(function() {
+				$(function() {
+				    $("#paging").pagination({
+				    	currentPage: ${products.currentPage}, 	//trang hiện tại
+				        items: ${products.totalItems},			//tổng số sản phẩm
+				        itemsOnPage: ${products.sizeOfPage}, 	//số sản phẩm trên 1 trang
+				        cssStyle: 'dark-theme',
+				        onPageClick: function(pageNumber, event) {
+				        	$('#page').val(pageNumber);
+				        	$('#btnSearch').trigger('click');
+						},
+				    });
+				});
+			});			
+		</script>
 </body>
 
 </html>

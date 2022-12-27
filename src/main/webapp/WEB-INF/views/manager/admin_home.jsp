@@ -31,9 +31,9 @@
 			<jsp:include page="/WEB-INF/views/manager/layout/css.jsp"></jsp:include>
 
 			<div class="container-fluid">
-				<div class="container-fluid" style="display: flex; background-color: #2222;">
-					<h2 class="mt-4">Admin</h2>
-					<img alt="" src="${base}/img/imager_5656.jpg" width="100" height="100" style="margin-left: 20px">
+				<div class="container-fluid"
+					style="display: flex; background-color: #2222;">
+					
 				</div>
 			</div>
 		</div>

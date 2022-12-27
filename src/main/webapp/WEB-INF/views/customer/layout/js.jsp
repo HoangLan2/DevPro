@@ -20,3 +20,5 @@
 <script src="${base}/user/js/slick.min.js"></script>
 <script src="${base}/user/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="${base}/user/js/register.js"></script>
+<!-- Paging -->
+<script src="${base }/user/js/jquery.simplePagination.js"></script>

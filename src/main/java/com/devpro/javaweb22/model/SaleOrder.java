@@ -47,13 +47,13 @@ public class SaleOrder extends BaseEntity{
 	private Set<SaleOrderProduct> saleOrderProducts = new HashSet<SaleOrderProduct>();
 
 	// theem 1 sp vao danh sach @OneTOMany
-	public void addRelationSaleOrderProduct(SaleOrderProduct saleOrderProduct) {
+	public void addSaleOrderProduct(SaleOrderProduct saleOrderProduct) {
 		saleOrderProducts.add(saleOrderProduct);
 		saleOrderProduct.setSaleOrder(this);
 	}
 
 	// xoa san pham khoi danh sach @OneToMany
-	public void deleteRelationSaleOrderProduct(SaleOrderProduct saleOrderProduct) {
+	public void deleteSaleOrderProduct(SaleOrderProduct saleOrderProduct) {
 		saleOrderProducts.remove(saleOrderProduct);
 		saleOrderProduct.setSaleOrder(null);
 	}

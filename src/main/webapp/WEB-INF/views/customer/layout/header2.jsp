@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<!-- import JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <header>
-	<div class="container">
-		<div class="content_header">
+	<div class="content_header">
+		<div class="container_header">
 			<div class="logo">
 				<a href=""> <img src="${base}/img/logo.png">
 				</a>
@@ -20,9 +26,24 @@
 			</div>
 			<div class="button-contact">
 
-				<a href=""><img src="${base}/img/dien_thoai.png"> hotline: 09230 55555</a> <a class="icon_cart" href=""><img
-					src="${base}/img/gio_hang.png"><span class="quantity">1</span></a>
+				<div class="buttom">
+					<form method="GET" action="${base }/product" id="form-search">
+						<input type="text" id="keyword" name="keyword"
+							placeholder="Từ khóa tìm kiếm" value="${ps.keyWord }">
+						<button type="submit" id="btnSearch" name="btnSearch"
+							value="Search">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</form>
+				</div>
+				<form action="${base}/cart/view" style="display: flex">
 
+					<button type="submit" class="icon_cart"
+						style="border: 0px; background-color: white;">
+						<img src="${base}/img/gio_hang.png"><span class="quantity"
+							id="totalCartItemId">${totalItems}</span>
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>

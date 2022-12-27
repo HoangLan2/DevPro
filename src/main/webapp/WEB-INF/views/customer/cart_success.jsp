@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!-- taglib JSTL -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,7 +13,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Shop Homepage - Start Bootstrap Template</title>
@@ -71,12 +73,13 @@
 		<div class="container px-4 px-lg-5 mt-5">
 
 			<div class="cartsuccesscard">
-				<div style="border-radius: 200px; height: 200px; width: 200px; background: #F8FAF5; margin: 0 auto;">
+				<div
+					style="border-radius: 200px; height: 200px; width: 200px; background: #F8FAF5; margin: 0 auto;">
 					<i class="checkmark">✓</i>
 				</div>
-				<h1>Success</h1>
+				<h1>Thành công</h1>
 				<p>
-					We received your purchase request;<br /> we'll be in touch shortly!
+					Trả tiền mặt<br /> Được kiểm tra hàng
 				</p>
 			</div>
 

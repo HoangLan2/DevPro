@@ -1,6 +1,8 @@
 
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Paging -->
+<link href="${base}/manager/css/simplePagination.css" rel="stylesheet" />
 <!-- Bootstrap icons-->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
@@ -16,4 +18,8 @@
 
 <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/manager/css/sub.css'>
-	
+
+<!-- summernote -->
+<link href="${base}/manager/css/summernote-bs4.min.css" rel="stylesheet" />
+
+

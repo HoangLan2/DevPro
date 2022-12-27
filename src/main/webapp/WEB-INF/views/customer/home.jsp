@@ -11,7 +11,8 @@
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>Trang chủ</title>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='viewport'
+	content='width=device-width, initial-scale=1, height = device-height, user-scaleble=yes'>
 <jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include>
 </head>
 
@@ -66,7 +67,7 @@
 				<%-- <form action="${base }/home" method="get"></form> --%>
 
 				<div class="row">
-					<c:forEach var="pro" items="${products }">
+					<c:forEach var="pro" items="${products.data }">
 						<!-- start -->
 
 						<div class="item">
@@ -78,7 +79,7 @@
 									<h2 class="product_name">
 										<a href="">${pro.title }</a>
 									</h2>
-									<div class="price">${pro.priceSale }đ</div>
+									<div class="price">${pro.priceSale }VNĐ</div>
 								</div>
 							</div>
 						</div>
@@ -111,18 +112,18 @@
 				<div class="slider-box _clearfix slickk">
 
 					<div class="slick-slider">
-						<c:forEach var="pro" items="${products }">
+						<c:forEach var="proHot" items="${productHot.data }">
 							<div class="item">
 								<div class="info">
-									<a href="${base }/detailProduct/${pro.id }"> <img
-										src="${base }/upload/${pro.avatar }" width="285"
+									<a href="${base }/detailProduct/${proHot.id }"> <img
+										src="${base }/upload/${proHot.avatar }" width="285"
 										height="289">
 									</a>
 									<div class="desc_product">
 										<h2 class="product_name">
-											<a href="">${pro.title }</a>
+											<a href="">${proHot.title }</a>
 										</h2>
-										<div class="price">${pro.priceSale }đ</div>
+										<div class="price">${proHot.priceSale }VNĐ</div>
 									</div>
 								</div>
 							</div>
@@ -139,21 +140,6 @@
 
 					</div>
 				</div>
-
-
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							<span class="sr-only">Previous</span>
-					</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-							class="sr-only">Next</span>
-					</a></li>
-				</ul>
 			</div>
 		</main>
 	</form>

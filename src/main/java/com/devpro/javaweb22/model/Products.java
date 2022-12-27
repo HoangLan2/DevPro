@@ -13,8 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -49,6 +47,7 @@ public class Products extends BaseEntity {
 	@Column(name = "is_hot", nullable = true)
 	private Boolean isHot = Boolean.FALSE;
 
+	// fetch = FetchType.EAGER: lấy hết bên category
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	private Categories categories;

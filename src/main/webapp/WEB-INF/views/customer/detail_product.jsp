@@ -18,7 +18,7 @@
 		<div class="breadcrumb">
 			<ol>
 				<li style="margin-right: 10px;"><img src="${base}/img/nha.png"></li>
-				<li><a href="product.html">Sản phẩm</a></li>
+				<li><a href="${base }/product">Sản phẩm</a></li>
 				<li>Chi tiết sản phẩm</li>
 			</ol>
 		</div>
@@ -32,16 +32,16 @@
 					<h5 class="mt-2" style="font-weight: bolder;">${product.title }</h5>
 					<p>${product.details }</p>
 					<p class="mb-2">${product.shortDes }</p>
-					<h6 style="font-weight: bold; margin-top: 20px;">Số lượng</h6>
-					<div class="buttons_added">
-						<input aria-label="quantity" class="input-qty" max="10" min="1"
-							name="" type="number" value="">
-						<div class="total">100.000 VNĐ</div>
+					<p class="mb-2" style="font-weight: bolder;">Đơn giá:
+						${product.priceSale } VNĐ</p>
+
+					<div>
+						<form>
+							<button class="btn btn-outline-secondary addCart" type="submit"
+								form="nameform" value="Submit"
+								onclick="addToCart(${product.id}, 1)">Thêm vào giỏ hàng</button>
+						</form>
 					</div>
-					<form>
-						<button class="addCart" type="submit" form="nameform"
-							value="Submit">Thêm vào giỏ hàng</button>
-					</form>
 				</div>
 			</div>
 		</div>
@@ -49,5 +49,33 @@
 
 	<jsp:include page="/WEB-INF/views/customer/layout/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/customer/layout/js.jsp"></jsp:include>
+
+	<script type="text/javascript">
+	 addToCart = function(productId,quanlity) {
+			// javascript object
+
+			let data = {
+				productId : productId,
+				quanlity: quanlity
+			};
+
+			// json == javascript object
+			jQuery.ajax({
+				url : "/cart/add",
+				type : "post",
+				contentType : "application/json",
+				data : JSON.stringify(data),
+
+				dataType : "json",
+				success : function(jsonResult) {
+					let totalItems = jsonResult.totalItems;
+					$("#totalCartItemId").html(totalItems);
+				},
+				error : function(jqXhr, textStatus, errorMessage) {
+
+				}
+			});
+		}
+	</script>
 </body>
 </html>

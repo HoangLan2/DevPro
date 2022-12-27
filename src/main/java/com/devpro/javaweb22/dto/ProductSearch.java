@@ -10,33 +10,47 @@ public class ProductSearch {
 	public String name;
 	public String title;
 	public String keyWord;
-	public int Page;
-	
-	
+	public Integer categoryId;
+	public Integer currentPage;
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getKeyWord() {
 		return keyWord;
 	}
+
 	public void setKeyWord(String keyWord) {
 		this.keyWord = keyWord;
 	}
-	public int getPage() {
-		return Page;
+
+	public Integer getCurrentPage() {
+		return currentPage;
 	}
-	public void setPage(int page) {
-		Page = page;
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
 	}
-	
-	
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
 }

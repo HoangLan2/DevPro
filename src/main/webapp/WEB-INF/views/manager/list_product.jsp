@@ -31,21 +31,36 @@
 		<jsp:include page="/WEB-INF/views/manager/layout/header.jsp"></jsp:include>
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
-			<p class="text-left font-weight-bold text-danger text-uppercase" style="font-size: 30px">Danh sách sản phẩm</p>
+				<p class="text-left font-weight-bold text-danger text-uppercase"
+					style="font-size: 30px">Danh sách sản phẩm</p>
 				<form class="form-inline" action="${base }/admin/product/list"
 					method="get">
 
-					<!-- tìm kiếm sản phẩm trên danh sách -->
+					<input id="page" name="page" class="form-control"
+						style="display: none" value="${productSerach.currentPage }">
+
+					<!-- tìm kiếm sản phẩm theo tên danh sách -->
 					<div class="d-flex flex-row justify-content-between mt-4">
 						<div class="d-flex flex-row">
-							<input id="page" name="page" class="form-control">
+							<input type="text" id="keyword" name="keyword"
+								class="form-control" placeholder="Search"
+								style="margin-right: 5px;" value="${ps.keyWord }">
+
+							<!-- tìm kiếm theo danh mục sản phẩm -->
+							<select class="form-control" name="categoryId" id="categoryId"
+								style="margin-right: 5px;">
+								<option value="0">All</option>
+								<c:forEach items="${categories}" var="category">
+									<option value="${category.id }">${category.name }</option>
+								</c:forEach>
+							</select>
 
 							<button type="submit" id="btnSearch" name="btnSearch"
 								value="Search" class="btn btn-primary">Seach</button>
 						</div>
 						<div>
 							<a class="btn btn-primary mb-1"
-								href="${base }/admin/product/add/" role="button"> Thêm mới </a>
+								href="${base }/admin/add-products" role="button"> Thêm mới </a>
 						</div>
 					</div>
 					<div></div>
@@ -57,37 +72,48 @@
 								<th scope="col">Tên sản phẩm</th>
 								<th scope="col">Giá bán</th>
 								<th scope="col">Danh mục</th>
-								<th scope="col">Tình trạng</th>
+								<!-- <th scope="col">Tình trạng</th> -->
 								<th scope="col">Hình ảnh</th>
 								<th scope="col">Hoạt động</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row" width="5%">${loop.index + 1}</th>
-								<td>Cúc-Ly</td>
-								<td>350.000 VNĐ</td>
-								<td>Hoa hồng</td>
-								<td><span> <c:choose>
-											<c:when test="${product.status }">
-												<input type="checkbox" checked="checked" readonly="readonly">
-											</c:when>
-											<c:otherwise>
-												<input type="checkbox" readonly="readonly">
-											</c:otherwise>
-										</c:choose>
-								</span></td>
-								<td><img src="${base}/img/sanpham_14.png" width="100"
-									height="100"></td>
-								<td width="15%">
-									<div>
-										<a class="btn btn-primary"
-											href="${base }/admin/product/management/${product.id}"
-											role="button">Edit</a> <a class="btn btn-danger"
-											role="button" onclick="DeleteProduct(${product.id});">Delete</a>
-									</div>
-								</td>
-							</tr>
+							<c:forEach items="${products.data}" var="product"
+								varStatus="loop">
+								<tr>
+									<th scope="row" width="5%">${loop.index + 1}</th>
+									<td>${product.title }</td>
+									<td>
+										<!-- định dạng tiền tệ --> <fmt:setLocale value="vi_VN"
+											scope="session" /> <fmt:formatNumber
+											value="${product.price }" type="currency" />
+									</td>
+									<td>${product.categories.name }</td>
+									<%-- <td><span id="_product_status_${product.id} }"> 
+									<c:choose>
+												<c:when test="${product.status }">
+													<input type="checkbox" checked="checked"
+														readonly="readonly">
+												</c:when>
+												<c:otherwise>
+													<input type="checkbox" readonly="readonly">
+												</c:otherwise>
+									</c:choose>
+									</span>
+									</td> --%>
+									<td><img src="${base }/upload/${product.avatar }"
+										width="100" height="100"></td>
+									<td width="15%">
+										<div>
+											<a class="btn btn-primary"
+												href="${base }/admin/edit-products/${product.id}"
+												role="button">Edit</a>
+											<button type="button" class="btn btn-danger"
+												onclick="DeleteProduct(${product.id});">Delete</button>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 
@@ -97,60 +123,57 @@
 							<div id="paging"></div>
 						</div>
 					</div>
-
 				</form>
-
 			</div>
 		</div>
 	</div>
 
 	<!-- JS -->
 	<jsp:include page="/WEB-INF/views/manager/layout/js.jsp"></jsp:include>
-
 	<script type="text/javascript">
 			
-			function DeleteProduct(productId) {
-				// tạo javascript object.  
-				var data = {
-					id: productId,
-				};
-				
-				// $ === jQuery
-				// json == javascript object
-				jQuery.ajax({
-					url:  '${base}' + "/admin/product/delete", //->request mapping
-					type: "post",					//-> method type cá»§a Request Mapping	
-					contentType: "application/json",//-> ná»i dung gá»­i lÃªn dáº¡ng json
-					data: JSON.stringify(data),
+	function DeleteProduct(productId) {
+		// tạo javascript object.  
+		var data = {
+			id: productId,
+		};
+		
+		var answer = window.confirm("Bạn có muốn xóa không?");
+		if(answer){
+			jQuery.ajax({
+				url:  '${base}' + "/admin/del-product/{productId}", //->request mapping
+				type: "post",					//-> method type cá»§a Request Mapping	
+				contentType: "application/json",//-> ná»i dung gá»­i lÃªn dáº¡ng json
+				data: JSON.stringify(data),
 
-					dataType: "json", // kiá»u dá»¯ liá»u tráº£ vá» tá»« Controller
-					success: function(jsonResult) {
-						location.reload();
-					},
-					error: function(jqXhr, textStatus, errorMessage) {
-						alert("error");
-					}
-				});
-			}
-			
-			$( document ).ready(function() {
-				
-				// đặt giá trị của category ứng với điều kiện search trước đó
-				$("#categoryId").val(${searchModel.categoryId});
-				
-				$("#paging").pagination({
-					currentPage: ${pdProduct.currentPage}, //trang hiện tại
-			        items: ${pdProduct.totalItems},	//tổng số sản phẩm
-			        itemsOnPage: ${pdProduct.sizeOfPage}, //số sản phẩm trên 1 trang
-			        cssStyle: 'light-theme',
-			        onPageClick: function(pageNumber, event) {
-			        	$('#page').val(pageNumber);
-			        	$('#btnSearch').trigger('click');
-					},
-			    });
+				dataType: "json", // kiá»u dá»¯ liá»u tráº£ vá» tá»« Controller
+				success: function(jsonResult) {
+					location.reload();
+				},
+				error: function(jqXhr, textStatus, errorMessage) {
+					alert("error");
+				}
 			});
-			
-		</script>
+		}
+		
+	}
+	
+	
+	$( document ).ready(function() {
+		$(function() {
+		    $("#paging").pagination({
+		    	currentPage: ${products.currentPage}, 	//trang hiện tại
+		        items: ${products.totalItems},			//tổng số sản phẩm
+		        itemsOnPage: ${products.sizeOfPage}, 	//số sản phẩm trên 1 trang
+		        cssStyle: 'light-theme',
+		        onPageClick: function(pageNumber, event) {
+		        	$('#page').val(pageNumber);
+		        	$('#btnSearch').trigger('click');
+				},
+		    });
+		});
+	});		
+	</script>
 
 </body>
 </html>

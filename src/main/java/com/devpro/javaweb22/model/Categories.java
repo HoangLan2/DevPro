@@ -25,17 +25,18 @@ public class Categories extends BaseEntity {
 	@Column(name = "seo", length = 100, nullable = false)
 	private String seo;
 
+	//  fetch = FetchType.LAZY : k lấy hết bên product
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "categories")
 	private Set<Products> products = new HashSet<Products>();
 
-	//theem 1 sp vao danh sach  @OneTOMany
-	public void addRelationProduct(Products product) {
+	// theem 1 sp vao danh sach @OneTOMany
+	public void addProduct(Products product) {
 		products.add(product);
 		product.setCategories(this);
 	}
-	
+
 	// xoa san pham khoi danh sach @OneToMany
-	public void deleteRelationProduct(Products product) {
+	public void deleteProduct(Products product) {
 		products.remove(product);
 		product.setCategories(null);
 	}

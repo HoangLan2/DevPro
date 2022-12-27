@@ -12,11 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tbl_saleorder_products")
 public class SaleOrderProduct extends BaseEntity {
-	@Column(name = "product_id", nullable = false)
-	private Integer productId;
 
 	@Column(name = "quality", nullable = false)
 	private Integer quality;
@@ -25,12 +24,16 @@ public class SaleOrderProduct extends BaseEntity {
 	@JoinColumn(name = "saleorder_id")
 	private SaleOrder saleOrder;
 
-	public Integer getProductId() {
-		return productId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "product_id", nullable = false)
+	private Products product;
+
+	public Products getProduct() {
+		return product;
 	}
 
-	public void setProductId(Integer productId) {
-		this.productId = productId;
+	public void setProduct(Products product) {
+		this.product = product;
 	}
 
 	public Integer getQuality() {
@@ -49,5 +52,4 @@ public class SaleOrderProduct extends BaseEntity {
 		this.saleOrder = saleOrder;
 	}
 
-	
 }

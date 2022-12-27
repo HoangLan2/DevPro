@@ -31,8 +31,8 @@
 	href="${base}/user/css/slick-theme.css" />
 <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/user/css/homestyle.css'>
-<link rel='stylesheet' type='text/css' media='screen'
-	href='${base}/user/css/cartstyle.css'>
+ <link rel='stylesheet' type='text/css' media='screen'
+	href='${base}/user/css/cartstyle.css'> 
 <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/user/css/productstyle.css'>
 <link rel='stylesheet' type='text/css' media='screen'
@@ -51,4 +51,5 @@
 <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/Font\UTM Aptima.ttf'>
 
-
+<!-- Paging -->
+<link href="${base}/user/css/simplePagination.css" rel="stylesheet" />

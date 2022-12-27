@@ -40,6 +40,11 @@ public class ContactController extends BaseController {
 	public String contact(final Model model, final HttpServletRequest request,
 			final HttpServletResponse response) throws IOException {
 
+//		String spl = "Select * From tbl_contact where status=1";
+//
+//		List<Contact> contacts = contactService.getEntitiesByNativeSQL(spl);
+//		System.out.println(contacts.size());
+
 		// đẩy danh sách nhan viên xuống view
 		List<Employee> employees = new ArrayList<Employee>();
 		employees.add(new Employee(100, "Lan"));

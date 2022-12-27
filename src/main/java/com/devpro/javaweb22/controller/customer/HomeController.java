@@ -6,7 +6,6 @@
 package com.devpro.javaweb22.controller.customer;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,17 +19,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.devpro.javaweb22.controller.BaseController;
 import com.devpro.javaweb22.dto.ProductSearch;
 import com.devpro.javaweb22.model.Products;
-import com.devpro.javaweb22.services.ProductsService;
+import com.devpro.javaweb22.services.BaseService;
+import com.devpro.javaweb22.services.PagerData;
+import com.devpro.javaweb22.services.ProductService;
 
-   	// @Controller: đánh dấu lớp này là Controller
+// @Controller: đánh dấu lớp này là Controller
 @Controller
 public class HomeController extends BaseController {
 
 	// @Autowired: Inject Service vào để gọi được
 	@Autowired
-	private ProductsService productService;
+	private ProductService productService;
 
 	// đăng ký 1 request cho controller này
+	// hiện danh sách sản phẩm có phân trang
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET) // -> action
 	public String listProduct(final Model model,
 			final HttpServletRequest request,
@@ -39,24 +41,22 @@ public class HomeController extends BaseController {
 		String keyWord = request.getParameter("keyword");
 		ProductSearch ps = new ProductSearch();
 		ps.setKeyWord(keyWord);
-		ps.setPage(getCurrentPage(request));
 
-		int pagePrev = ps.getPage();
-		if (pagePrev <= 0) {
-			pagePrev = 1;
+		Integer currentPage = BaseService.NO_PAGING;
+
+		try {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		List<Products> product = productService.search(ps);
-		int pageNext = ps.getPage() + 2;
-		if (product.size() <= 1) {
-			pageNext = pageNext - 1;
-		}
+		ps.setCurrentPage(currentPage);
+		PagerData<Products> products = productService.newProduct(ps);
+		// đẩy xuống view để xử lý
+		model.addAttribute("products", products);
 
-		model.addAttribute("pagePrev", pagePrev);
-		model.addAttribute("pageNext", pageNext);
+		model.addAttribute("productHot", productService.fildProductHot(ps));
 
-		//đẩy xuống view để xử lý
-		model.addAttribute("products", productService.search(ps));
-		//cac views se duoc dat tai thu muc: /src/main/webapp/WEB-INF/views
+		// cac views se duoc dat tai thu muc: /src/main/webapp/WEB-INF/views
 		return "customer/home"; // -> duong dan toi VIEW.
 	}
 
