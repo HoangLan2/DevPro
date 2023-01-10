@@ -4,7 +4,7 @@ $('#open_sidebar').on('click', function(event) {
 	// lấy giá trị của thuộc tính css left
 	var left_sidebar = $('nav').css('left');
 	if (left_sidebar == '-320px') {
-		$('nav').css('left', '0px');
+		$('nav').css('left', '20px');
 	} else {
 		$('nav').css('left', '-320px');
 	}

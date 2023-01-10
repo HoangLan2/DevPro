@@ -38,9 +38,14 @@ public class HomeController extends BaseController {
 			final HttpServletRequest request,
 			final HttpServletResponse response) throws IOException {
 
+		// lấy thông tin từ request param
 		String keyWord = request.getParameter("keyword");
-		ProductSearch ps = new ProductSearch();
-		ps.setKeyWord(keyWord);
+		Integer categoryId = 0;
+		try {
+			categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		Integer currentPage = BaseService.NO_PAGING;
 
@@ -49,9 +54,17 @@ public class HomeController extends BaseController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
+		// set các giá trị lấy đc vào ProductSearch dto
+		ProductSearch ps = new ProductSearch();
+		ps.setKeyWord(keyWord);
+		ps.setCategoryId(categoryId);
 		ps.setCurrentPage(currentPage);
+
 		PagerData<Products> products = productService.newProduct(ps);
+
 		// đẩy xuống view để xử lý
+		model.addAttribute("ps", ps);
 		model.addAttribute("products", products);
 
 		model.addAttribute("productHot", productService.fildProductHot(ps));

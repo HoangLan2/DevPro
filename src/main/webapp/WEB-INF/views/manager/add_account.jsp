@@ -93,7 +93,7 @@
 
 					<div class="form-group">
 						<label for="role">Loại tài khoản </label><br> <select
-							class="form-control" id="role" name="role">
+							class="form-control" id="roleId" name="role">
 							<option value="ADMIN">ADMIN</option>
 							<option value="GUEST">GUEST</option>
 						</select>

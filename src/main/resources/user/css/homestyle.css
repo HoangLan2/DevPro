@@ -54,16 +54,13 @@ header {
 .menu_header {
 	text-align: center;
 	margin-top: 6px;
+	display: flex;
 }
 
 .ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-}
-
-.menu_header {
-	display: flex;
 }
 
 .menu_header>li {
@@ -261,6 +258,78 @@ ul {
 	margin-bottom: 50px;
 }
 
+#open_sidebar {
+	opacity: 0;
+}
+
+@media screen and (max-width: 1023.99px) {
+	.row .item {
+		width: calc(100%/ 3);
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+}
+
+@media screen and (max-width:767.99px) {
+	.row .item {
+		width: calc(100%/ 2);
+		margin-left: 92px;
+	}
+	.c {
+		display: block;
+	}
+	.container_header {
+		display: flex;
+		justify-content: space-between;
+		margin: auto;
+	}
+	nav {
+		background-color: #c0d6e4;
+		position: fixed;
+		width: 300px;
+		height: 100vh;
+		top: 0;
+		left: -320px;
+		opacity: 0.95;
+		transition: 0.5s;
+		position: fixed;
+		margin-left: -21px;
+	}
+	.menu_header {
+		display: block;
+	}
+	ul li a {
+		border-bottom: 1px solid #f6f6f6;
+	}
+	#open_sidebar {
+		display: block;
+		margin-left: 15px;
+		margin-top: 30px;
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width:424.99px) {
+	.row .item {
+		width: calc(100%);
+	}
+}
+
+@media screen and (min-width: 425px) {
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 992px) {
+}
+
+@media screen and (min-width: 1200px) {
+}
+
+@media ( min-width : 768px) and (max-width: 1023.99px) {
+}
+
 .desc_product {
 	text-align: center;
 }
@@ -418,63 +487,4 @@ footer {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	line-height: 22px;
-}
-
-@media screen and (max-width:1023.99px) {
-	.row .item {
-		width: calc(100%/ 3);
-		margin-left: -15px;
-		margin-right: -15px;
-	}
-}
-
-@media screen and (max-width:767.99px) {
-	.row .item {
-		width: calc(100%/ 2);
-	}
-	nav {
-		position: fixed;
-		width: 300px;
-		height: 100vh;
-		top: 0;
-		left: -320px;
-		opacity: 0.95;
-		transition: 0.5s;
-	}
-	ul {
-		display: block;
-	}
-	.container-mobile {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-	ul li a {
-		border-bottom: 1px solid #f6f6f6;
-	}
-	#open_sidebar {
-		display: block;
-		margin-left: 15px;
-		margin-top: 30px;
-	}
-}
-
-@media screen and (max-width:424.99px) {
-	.row .item {
-		width: calc(100%);
-	}
-}
-
-@media screen and (min-width: 425px) {
-}
-
-@media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 992px) {
-}
-
-@media screen and (min-width: 1200px) {
-}
-
-@media ( min-width : 768px) and (max-width: 1023.99px) {
 }

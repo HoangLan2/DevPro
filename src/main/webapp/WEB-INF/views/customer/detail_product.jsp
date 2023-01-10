@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -32,14 +33,20 @@
 					<h5 class="mt-2" style="font-weight: bolder;">${product.title }</h5>
 					<p>${product.details }</p>
 					<p class="mb-2">${product.shortDes }</p>
-					<p class="mb-2" style="font-weight: bolder;">Đơn giá:
-						${product.priceSale } VNĐ</p>
+					<p class="mb-2" style="font-weight: bolder;">
+						Đơn giá:
+						<fmt:setLocale value="vi_VN" />
+						<strong><fmt:formatNumber value="${product.priceSale }"
+								type="currency" />VNĐ </strong> 
+					</p>
+
 
 					<div>
 						<form>
 							<button class="btn btn-outline-secondary addCart" type="submit"
 								form="nameform" value="Submit"
-								onclick="addToCart(${product.id}, 1)">Thêm vào giỏ hàng</button>
+								onclick="addToCart('${base}',${product.id}, 1)">Thêm
+								vào giỏ hàng</button>
 						</form>
 					</div>
 				</div>
@@ -51,17 +58,18 @@
 	<jsp:include page="/WEB-INF/views/customer/layout/js.jsp"></jsp:include>
 
 	<script type="text/javascript">
-	 addToCart = function(productId,quanlity) {
+	 addToCart = function(baseUrl, productId,quanlity) {
 			// javascript object
 
+			// data sẽ đẩy lại cho controller
 			let data = {
-				productId : productId,
-				quanlity: quanlity
+				productId : productId,  // id sản phẩm
+				quanlity: quanlity		// số lượng cho vào giỏ
 			};
 
 			// json == javascript object
 			jQuery.ajax({
-				url : "/cart/add",
+				url :baseUrl+ "/cart/add",
 				type : "post",
 				contentType : "application/json",
 				data : JSON.stringify(data),

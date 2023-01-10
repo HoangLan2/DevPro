@@ -63,6 +63,7 @@ public class ProductController extends BaseController {
 		PagerData<Products> products = productService.searchProduct(ps);
 
 		// đẩy xuống view để xử lý
+		model.addAttribute("ps", ps);
 		model.addAttribute("products", products);
 		return "customer/product";
 	}

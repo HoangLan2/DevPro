@@ -189,8 +189,20 @@ public class ProductService extends BaseService<Products> implements Constants {
 	@Transactional
 	public PagerData<Products> newProduct(ProductSearch productSearch) {
 		// khởi tạo câu lệnh
-		String sql = "SELECT * FROM tbl_products where status = '1' order by created_date desc";
+		String sql = "SELECT * FROM tbl_products p where status = '1' ";
 
+		if (productSearch != null) {
+
+			// tìm kiếm theo title và description
+			if (!StringUtils.isEmpty(productSearch.getKeyWord())) {
+				sql += " and (p.title like '%" + productSearch.getKeyWord()
+						+ "%'" + " or p.detail_description like '%"
+						+ productSearch.getKeyWord() + "%'"
+						+ " or p.short_description like '%"
+						+ productSearch.getKeyWord() + "%')";
+			}
+		}
+		sql += " order by created_date desc";
 		return super.getEntitiesByNativeSQL(sql,
 				productSearch.getCurrentPage());
 	}

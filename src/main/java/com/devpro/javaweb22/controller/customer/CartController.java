@@ -6,6 +6,7 @@
 package com.devpro.javaweb22.controller.customer;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,6 +62,7 @@ public class CartController extends BaseController {
 					.multiply(item.getPriceUnit()));
 		}
 		cart.setTotalPrice(total);
+
 		return total;
 	}
 
@@ -235,8 +236,9 @@ public class CartController extends BaseController {
 				}
 				item.setQuanlity(currentProductQuality);
 
-				totalPriceItem = item.getPriceUnit()
-						.multiply(BigDecimal.valueOf(currentProductQuality));
+				totalPriceItem = totalPriceItem.add(item.getPriceUnit()
+						.multiply(BigDecimal.valueOf(currentProductQuality)));
+				item.setTotalPriceItem(totalPriceItem);
 			}
 		}
 		// trả về kết quả
@@ -247,8 +249,57 @@ public class CartController extends BaseController {
 		jsonResult.put("currentProductQuality", currentProductQuality);
 		jsonResult.put("totalPriceItem", totalPriceItem);
 		jsonResult.put("totalCart", getTotalPrice(request));
-
 		session.setAttribute("totalItems", getTotalItems(request));
+		return ResponseEntity.ok(jsonResult);
+	}
+
+	@RequestMapping(value = { "/ajax/deleteItem" }, method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> ajaxDeleteItem(final Model model,
+			final HttpServletRequest request,
+			final HttpServletResponse response,
+			final @RequestBody CartItem cartItem) {
+
+// để lấy session sử dụng thông qua request
+// session tương tự như kiểu Map và được lưu trên main memory.
+		HttpSession httpSession = request.getSession();
+
+		Cart cart = (Cart) httpSession.getAttribute("cart");
+
+		List<CartItem> cartItems = cart.getCartItems();
+		Double totalPrice = 0d;
+
+		for (int i = 0; i < cartItems.size(); i++) {
+			if (cartItems.get(i).getProductId() == cartItem.getProductId()) {
+				cartItems.remove(i);
+				break;
+			}
+		}
+//		int currentProductQuality = cartItem.getQuanlity();
+//		BigDecimal totalPriceItem = BigDecimal.ZERO;
+//		for (CartItem item : cartItems) {
+//			if (item.getProductId() == cartItem.getProductId()) {
+//				currentProductQuality = item.getQuanlity()
+//						+ cartItem.getQuanlity();
+//				if (currentProductQuality < 0) {
+//					currentProductQuality = 0;
+//				}
+//				item.setQuanlity(currentProductQuality);
+//
+//				totalPriceItem = item.getPriceUnit()
+//						.multiply(BigDecimal.valueOf(currentProductQuality));
+//			}
+//		}
+
+		httpSession.setAttribute("totalItems", getTotalItems(request));
+		httpSession.setAttribute("totalPrice", totalPrice);
+		Map<String, Object> jsonResult = new HashMap<String, Object>();
+		jsonResult.put("code", 200);
+		jsonResult.put("status", "TC");
+		jsonResult.put("totalItems", getTotalItems(request));
+		// jsonResult.put("currentProductQuality", currentProductQuality);
+		// jsonResult.put("totalPriceItem", totalPriceItem);
+		jsonResult.put("totalCart", getTotalPrice(request));
+		jsonResult.put("totalItems", getTotalItems(request));
 		return ResponseEntity.ok(jsonResult);
 	}
 

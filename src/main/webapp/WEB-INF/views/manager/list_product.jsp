@@ -160,6 +160,10 @@
 	
 	
 	$( document ).ready(function() {
+		
+		// đặt category ứng với điều kiện search trc đó
+		$("#categoryId").val(${ps.categoryId});
+		
 		$(function() {
 		    $("#paging").pagination({
 		    	currentPage: ${products.currentPage}, 	//trang hiện tại
@@ -173,6 +177,7 @@
 		    });
 		});
 	});		
+	
 	</script>
 
 </body>

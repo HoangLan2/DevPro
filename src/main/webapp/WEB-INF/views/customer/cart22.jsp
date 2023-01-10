@@ -39,7 +39,7 @@
 			<div class="main">
 				<div class="sub">
 
-					<table class="table" style="margin-left: 20px; margin-right: 200px">
+					<table class="table" style="margin-left: 20px; margin-right: 100px">
 						<thead class="thead-light">
 							<tr>
 								<th>Hình ảnh</th>
@@ -47,6 +47,7 @@
 								<th scope="col">Giá</th>
 								<th scope="col">Số lượng</th>
 								<th scope="col">Tạm tính</th>
+								<th scope="col">Xóa</th>
 							</tr>
 						</thead>
 						<c:forEach items="${cart.cartItems }" var="cartItem">
@@ -55,16 +56,26 @@
 									<td><img src="${base }/upload/${cartItem.avatar }"
 										style="width: 150px; height: 150px"></td>
 									<td>${cartItem.productName }</td>
-									<td>${cartItem.priceUnit }</td>
+									<td><fmt:setLocale value="vi_VN" /> <strong><fmt:formatNumber
+												value="${cartItem.priceUnit }" type="currency" /></strong></td>
 									<td><button
 											onclick="UpdateQuanlityCart('${base }', ${cartItem.productId}, -1)"
-											value="-">-</button> <strong><span
-											id="quanlity_${cartItem.productId}">${cartItem.quanlity }</span></strong>
+											value="-" style="border: 0px">
+											<i class="fa-solid fa-minus"></i>
+										</button> <strong><span id="quanlity_${cartItem.productId}">${cartItem.quanlity }</span></strong>
 										<button
 											onclick="UpdateQuanlityCart('${base }', ${cartItem.productId}, 1)"
-											value="+">+</button></td>
+											value="+" style="border: 0px">
+											<i class="fa-solid fa-plus"></i>
+										</button></td>
 									<td><span id="totalPriceItem${cartItem.productId}">
-											${cartItem.totalPriceItem } </span> VNĐ</td>
+											<fmt:setLocale value="vi_VN" /> <strong><fmt:formatNumber
+													value="${cartItem.totalPriceItem }" type="currency" /> </strong>
+									</span></td>
+									<td><button onclick="DeleteItem(${cartItem.productId})"
+											value="x" style="border: 0px">
+											<i class="fa-regular fa-trash-can"></i>
+										</button></td>
 								</tr>
 							</tbody>
 						</c:forEach>
@@ -121,7 +132,9 @@
 					<div class="provisional">
 						<div style="margin-right: 140px; font-weight: bold;">Tổng</div>
 						<div style="font-weight: bold; color: #cc9933;">
-							<span id="totalCart"> ${cart.totalPrice } </span> VNĐ
+							<span id="totalCart"> <fmt:setLocale value="vi_VN" /> <strong><fmt:formatNumber
+										value="${cart.totalPrice }" type="currency" /></strong>
+							</span> VNĐ
 						</div>
 					</div>
 				</div>
@@ -170,7 +183,8 @@
 								<ul class="list-unstyled mb-4">
 									<li class="d-flex justify-content-between py-3 border-bottom"><strong
 										class="text-muted">Tổng đơn hàng </strong><strong><span
-											id="totalCart3">${cart.totalPrice } </span> VNĐ</strong></li>
+											id="totalCart3"> <fmt:setLocale value="vi_VN" /> <strong><fmt:formatNumber
+														value="${cart.totalPrice }" type="currency" />VNĐ </strong></span> VNĐ</strong></li>
 									<li class="d-flex justify-content-between py-3 border-bottom"><strong
 										class="text-muted">Phí ship</strong><strong>Free</strong></li>
 									<li class="d-flex justify-content-between py-3 border-bottom"><strong
@@ -178,7 +192,9 @@
 									<li class="d-flex justify-content-between py-3 border-bottom"><strong
 										class="text-muted">Tổng</strong>
 										<h5 class="font-weight-bold totalPrice">
-											<span id="totalCart2"> ${cart.totalPrice } </span> VNĐ
+											<span id="totalCart2"> <fmt:setLocale value="vi_VN" />
+												<strong><fmt:formatNumber
+														value="${cart.totalPrice }" type="currency" />VNĐ </strong></span>
 										</h5></li>
 								</ul>
 
@@ -199,6 +215,36 @@
 	<jsp:include page="/WEB-INF/views/customer/layout/js.jsp"></jsp:include>
 
 	<script type="text/javascript">
+	
+	function DeleteItem(productId) {
+		let data = {
+				productId: productId,
+		};
+		
+		jQuery.ajax({
+			url: "/ajax/deleteItem", //->action
+			type: "post",
+			contentType: "application/json",
+			data: JSON.stringify(data),
+
+			dataType: "json", // kieu du lieu tra ve tu controller la json
+			success: function(jsonResult) {
+				// tăng số lượng sản phẩm trong giỏ hàng trong icon
+				$( "#quanlity_" + productId ).html(jsonResult.currentProductQuality);
+				// tổng giỏ hàng
+				$( "#totalPriceItem" + productId ).html(jsonResult.totalPriceItem);
+				$("#totalCartItemId").html(jsonResult.totalItems);
+				$( "#totalCart" ).html(jsonResult.totalCart);
+				$( "#totalCart2" ).html(jsonResult.totalCart);
+				$( "#totalCart3" ).html(jsonResult.totalCart);
+				
+				location.reload();
+			},
+			error: function(jqXhr, textStatus, errorMessage) {
+				
+			}
+		});
+	}
 	
 	function UpdateQuanlityCart(baseUrl, productId, quanlity) {
 		
@@ -222,7 +268,7 @@
 				$( "#quanlity_" + productId ).html(jsonResult.currentProductQuality);
 				// tổng giỏ hàng
 				$( "#totalPriceItem" + productId ).html(jsonResult.totalPriceItem);
-				
+				$("#totalCartItemId").html(jsonResult.totalItems);
 				$( "#totalCart" ).html(jsonResult.totalCart);
 				$( "#totalCart2" ).html(jsonResult.totalCart);
 				$( "#totalCart3" ).html(jsonResult.totalCart);

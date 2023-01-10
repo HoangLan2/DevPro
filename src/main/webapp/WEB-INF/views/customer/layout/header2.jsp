@@ -36,10 +36,10 @@
 						</button>
 					</form>
 				</div>
-				<form action="${base}/cart/view" style="display: flex">
+				<form action="${base}/cart/view" style="display: flex; border: 0px">
 
 					<button type="submit" class="icon_cart"
-						style="border: 0px; background-color: white;">
+						style="border: 0px; background-color: white ">
 						<img src="${base}/img/gio_hang.png"><span class="quantity"
 							id="totalCartItemId">${totalItems}</span>
 					</button>

@@ -33,8 +33,8 @@
 	href='${base}/user/css/homestyle.css'>
  <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/user/css/cartstyle.css'> 
-<link rel='stylesheet' type='text/css' media='screen'
-	href='${base}/user/css/productstyle.css'>
+<%-- <link rel='stylesheet' type='text/css' media='screen'
+	href='${base}/user/css/productstyle.css'> --%>
 <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/user/css/contactstyle.css'>
 <link rel='stylesheet' type='text/css' media='screen'

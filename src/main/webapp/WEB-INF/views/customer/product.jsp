@@ -54,7 +54,11 @@
 									<h2 class="product_name">
 										<a href="">${pro.title }</a>
 									</h2>
-									<div class="price">${pro.priceSale }VNĐ</div>
+									<div class="price">
+										<fmt:setLocale value="vi_VN" />
+										<strong><fmt:formatNumber value="${pro.priceSale}"
+												type="currency" />VNĐ </strong> 
+									</div>
 								</div>
 							</div>
 						</div>
@@ -64,7 +68,7 @@
 				</div>
 			</div>
 			<div class="row" style="width: 100%">
-				<div class="col-12 d-flex justify-content-center" >
+				<div class="col-12 d-flex justify-content-center">
 					<div id="paging">1</div>
 				</div>
 			</div>

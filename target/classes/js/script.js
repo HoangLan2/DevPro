@@ -3,17 +3,17 @@ $('#open_sidebar').on('click', function (event) {
     event.stopPropagation();
     // lấy giá trị của thuộc tính css left
     var left_sidebar = $('nav').css('left');
-    if (left_sidebar == '-320px') {
-        $('nav').css('left', '0px');
+    if (left_sidebar == '-470px') {
+        $('nav').css('left', '320px');
     } else {
-        $('nav').css('left', '-320px');
+        $('nav').css('left', '320px');
     }
 });
 
 $(document).on('click', function (event) {
     var obj = $('nav');
     if (!obj.is(event.target) && obj.has(event.target).length === 0) {
-        $('nav').css('left', '-320px');
+        $('nav').css('left', '320px');
     }
 });
 

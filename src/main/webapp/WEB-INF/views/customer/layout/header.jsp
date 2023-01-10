@@ -10,25 +10,32 @@
 <header>
 
 	<div class="content_header">
+		<button type="button" id="open_sidebar" onclick="click()"
+			style="height: 10%">
+			<i class="fa-solid fa-bars"></i>
+		</button>
 		<div class="container_header">
+
 			<div class="logo">
 				<a href=""> <img src="${base}/img/logo.png">
 				</a>
 			</div>
 			<div class="container">
 				<div class="c">
-					<ul class="menu_header">
-						<li><a href="${base }/home" class="active">Trang chủ</a></li>
-						<li><a href="">Giới thiệu</a></li>
-						<li><a href="${base }/product">Sản phẩm</a></li>
-						<li><a href="">Sự kiện</a></li>
-						<li><a href="">Chính sách</a></li>
-						<li><a href="${base }/contact">Liên hệ</a></li>
-					</ul>
-
+					<nav>
+						<ul class="menu_header">
+							<li><a href="${base }/home" class="active">Trang chủ</a></li>
+							<li><a href="">Giới thiệu</a></li>
+							<li><a href="${base }/product">Sản phẩm</a></li>
+							<li><a href="">Sự kiện</a></li>
+							<li><a href="">Chính sách</a></li>
+							<li><a href="${base }/contact">Liên hệ</a></li>
+						</ul>
+					</nav>
 					<div class="buttom">
 						<form method="GET" action="" id="form-search">
-							<input type="text" name="keyword" placeholder="Từ khóa tìm kiếm">
+							<input type="text" name="keyword" placeholder="Từ khóa tìm kiếm"
+								value="${ps.keyWord }">
 							<button type="submit" class="btn-search">
 								<i class="fa-solid fa-magnifying-glass"></i>
 							</button>

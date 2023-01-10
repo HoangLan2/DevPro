@@ -47,7 +47,7 @@ public class SecureConf extends WebSecurityConfigurerAdapter {
 
 				// cấu hình cho logout
 				.logout().logoutUrl("/logout") // click logout
-				.logoutSuccessUrl("/home") // logout thành công trả về trang home
+				.logoutSuccessUrl("/login") // logout thành công trả về trang home
 				.invalidateHttpSession(true).deleteCookies("JSESSIONID")
 				.permitAll();
 	}

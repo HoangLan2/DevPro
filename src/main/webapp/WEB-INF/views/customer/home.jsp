@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -12,12 +13,14 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>Trang chủ</title>
 <meta name='viewport'
-	content='width=device-width, initial-scale=1, height = device-height, user-scaleble=yes'>
+	content='width=device-width, initial-scale=1, height= device-height, user-scalable = yes'>
+
 <jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include>
 </head>
 
 <body>
 	<form action="${base }/home" method="get">
+
 		<jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
 		<main>
 			<div id="carouselExampleIndicators" class="carousel slide"
@@ -79,7 +82,13 @@
 									<h2 class="product_name">
 										<a href="">${pro.title }</a>
 									</h2>
-									<div class="price">${pro.priceSale }VNĐ</div>
+									<div class="price" style="font-family: Arial">
+
+										<fmt:setLocale value="vi_VN" />
+										<strong><fmt:formatNumber value="${pro.priceSale}"
+												type="currency" /></strong> VNĐ
+
+									</div>
 								</div>
 							</div>
 						</div>
@@ -123,7 +132,11 @@
 										<h2 class="product_name">
 											<a href="">${proHot.title }</a>
 										</h2>
-										<div class="price">${proHot.priceSale }VNĐ</div>
+										<div class="price">
+											<fmt:setLocale value="vi_VN" />
+											<strong><fmt:formatNumber
+													value="${proHot.priceSale }" type="currency" /></strong> VNĐ
+										</div>
 									</div>
 								</div>
 							</div>
