@@ -16,7 +16,7 @@
 
 <!-- Ngoài việc quản lý version của dependency thì pring-boot-starter-parent -->
 	<!-- giúp tích hợp Spring-Boot trong Maven Project -->
-	<!-- Ngoài việc quản lý version của dependency thì pring-boot-starter-parent -->
+	<!-- Ngoàiy thì pring-boot-starter-parent -->
 	<!-- giúp tích hợp Spring-Boot trong Maven Project -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
