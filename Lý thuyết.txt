@@ -1,0 +1,8 @@
+1. Amemd
+git commit –amend được sử dụng khi chúng ta muốn sửa đổi commit cuối cùng.
+
+Thường là do chúng ta đã add thiếu file hoặc dư file hoặc quên sửa file khi commit, hoặc đơn giản hơn chỉ là thay đổi lại message cho commit cuối cùng.
+
+2. Rebase
+
+Tác dụng: là lưu giữ lịch sử làm việc của dự án một cách tuyến tính.
